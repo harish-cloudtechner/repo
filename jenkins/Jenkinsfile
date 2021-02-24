@@ -1,16 +1,21 @@
 pipeline {
-    agent {
-        docker {
-            image 'maven:3-alpine'
-            args '-v /root/.m2:/root/.m2'
+    agent any
+    tools {
+        maven 'maven'
         }
-    }
     stages {
-        stage('Build') {
+        stage('Git Checkout') {
             steps {
-                sh 'mvn -B -DskipTests clean package'
-            }
+                git branch: 'main',
+                credentialsId: 'ce8c2b00-3056-4d2b-8bf4-946d06d81ade',
+                url: 'https://github.com/hsct2707/repo.git'
+                }
         }
+        stage ('Compile') {
+            steps {
+                sh 'mvn compile'
+                }
+            }  
         stage('Test') {
             steps {
                 sh 'mvn test'
