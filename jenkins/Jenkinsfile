@@ -7,7 +7,7 @@ pipeline {
         stage('Git Checkout') {
             steps {
                 git branch: 'main',
-                credentialsId: 'b333ccf6-f1d5-4006-89c0-dd153d66892d',
+                credentialsId: 'a8c03966-bbf7-4e70-95b4-cee17a8a639f',
                 url: 'https://github.com/hsct2707/repo.git'
                 }
         }
